@@ -6,7 +6,7 @@ import { checkConnectedAndSepolia } from '@/lib/web3'
 import FoodTraceArtifact from '@/src/abi/FoodTrace.json'
 
 // ✅ 换成你重新部署后的合约地址（带哈希+签名版本）
-const CONTRACT_ADDRESS = '0x01736949e2E27394Be6b373D0071A42Faa41A162'
+const CONTRACT_ADDRESS = '0xFdb57c6972e6AFBe7791CfDDCF4e96d5A81a6B3E'
 
 export default function Home() {
   const router = useRouter()
