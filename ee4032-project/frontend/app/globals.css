@@ -1,0 +1,49 @@
+@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* === FoodTrace DApp 全局主题 === */
+:root {
+  --color-bg: #fff8e7;       /* 背景浅米黄 */
+  --color-text: #2e2e2e;     /* 深灰字体 */
+  --color-primary: #f4a261;  /* 温暖橙 */
+  --color-accent: #e76f51;   /* 按钮 hover 色 */
+}
+
+/* 页面基础样式 */
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: "Segoe UI", "Roboto", "Helvetica Neue", sans-serif;
+  line-height: 1.6;
+}
+
+/* 按钮统一样式 */
+button {
+  background-color: var(--color-primary);
+  color: #3d2c00;
+  font-weight: 600;
+  border-radius: 8px;
+  padding: 10px 16px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: var(--color-accent);
+  color: #fff;
+}
+
+/* 卡片或输入框背景 */
+input, textarea, select {
+  background-color: #fffdf6;
+  border: 1px solid #e0c097;
+  color: #2e2e2e;
+  padding: 8px;
+  border-radius: 6px;
+}
+
+input:focus, textarea:focus {
+  outline: 2px solid #f4a261;
+}
