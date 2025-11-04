@@ -5,7 +5,7 @@ import { useParams, useRouter } from 'next/navigation'
 import { ethers } from 'ethers'
 import FoodTraceArtifact from '@/src/abi/FoodTrace.json'
 
-const CONTRACT_ADDRESS = '0x66D5BCe2132b1163CEBB3Bca660a06C2a7294501' // ✅ 最新部署地址
+const CONTRACT_ADDRESS = '0x01736949e2E27394Be6b373D0071A42Faa41A162' // ✅ 最新部署地址
 
 export default function TracePage() {
   const { id } = useParams()
