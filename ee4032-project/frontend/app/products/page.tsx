@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation'
 import { ethers } from 'ethers'
 import FoodTraceArtifact from '@/src/abi/FoodTrace.json'
 
-const CONTRACT_ADDRESS = '0x01736949e2E27394Be6b373D0071A42Faa41A162' // ✅ 替换成最新部署地址
+const CONTRACT_ADDRESS = '0xFdb57c6972e6AFBe7791CfDDCF4e96d5A81a6B3E' // ✅ 替换成最新部署地址
 
 type Product = {
     id: bigint
