@@ -5,7 +5,8 @@ import { useParams, useRouter } from 'next/navigation'
 import { ethers } from 'ethers'
 import FoodTraceArtifact from '@/src/abi/FoodTrace.json'
 
-const CONTRACT_ADDRESS = '0xFdb57c6972e6AFBe7791CfDDCF4e96d5A81a6B3E' // ✅ 最新部署地址
+// ✅ 使用你部署的最新合约地址
+const CONTRACT_ADDRESS = '0x65F2Ef6DA88aA95C2BDfDEF00Be29bD5A6835F0b'
 
 export default function TracePage() {
   const { id } = useParams()
@@ -15,6 +16,7 @@ export default function TracePage() {
   const [history, setHistory] = useState<any[]>([])
   const [newStatus, setNewStatus] = useState('')
   const [newImageUrl, setNewImageUrl] = useState('')
+  const [salt, setSalt] = useState('') // ✅ 新增盐值输入
   const [loading, setLoading] = useState(true)
 
   // 🟢 初始化合约
@@ -79,13 +81,14 @@ export default function TracePage() {
     }
   }
 
-  // ✅ 验证哈希与签名
+  // ✅ 验证哈希与签名（包含 salt 参数）
   async function handleVerify() {
     if (!contract || !product) return alert('No product loaded')
 
     const pid = Array.isArray(id) ? id[0] : id!
+    if (!salt.trim()) return alert('⚠️ Please enter the salt value used during registration.')
+
     try {
-      // ✅ ⚠️ 现在 verifyProductData 不再包含 imageUrl 参数
       const [hashOk, sigOk] = await Promise.all([
         contract.verifyProductData(
             BigInt(pid),
@@ -93,7 +96,8 @@ export default function TracePage() {
             product.origin,
             product.location,
             product.productionDate,
-            product.description
+            product.description,
+            salt.trim() // ✅ 新增 salt 参数
         ),
         contract.verifySignature(BigInt(pid))
       ])
@@ -151,17 +155,24 @@ export default function TracePage() {
             <p><b>Owner:</b> {product.owner}</p>
             <p>
               <b>Data Hash:</b>{' '}
-              <span className="text-xs break-all text-gray-600">
-              {product.dataHash}
-            </span>
+              <span className="text-xs break-all text-gray-600">{product.dataHash}</span>
             </p>
             <p className="text-sm text-gray-500">
               Last Updated: {new Date(Number(product.timestamp) * 1000).toLocaleString()}
             </p>
           </div>
 
-          {/* 验证签名按钮 */}
-          <div className="mt-4">
+          {/* ✅ 盐值输入 + 验证按钮 */}
+          <div className="mt-4 space-y-2">
+            <label className="text-sm text-gray-700 font-medium">
+              Salt value (used when committing the hash)
+            </label>
+            <input
+                className="border p-2 rounded w-full"
+                placeholder="Enter salt (e.g. 0x7fa9b3d2e8c4a1ff)"
+                value={salt}
+                onChange={(e) => setSalt(e.target.value)}
+            />
             <button
                 onClick={handleVerify}
                 className="px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700"
