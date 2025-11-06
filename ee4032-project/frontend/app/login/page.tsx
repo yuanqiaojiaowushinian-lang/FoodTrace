@@ -161,7 +161,7 @@ export default function LoginPage() {
                         disabled={loading}
                         className="w-full py-3 rounded-xl bg-black text-white hover:bg-gray-800 disabled:opacity-60"
                     >
-                        {loading ? '连接中…' : '连接 MetaMask'}
+                        {loading ? 'Connecting...' : 'Connect to MetaMask'}
                     </button>
 
                     {/* 音乐控制（自动播放，提供音量滑块） */}
@@ -201,4 +201,5 @@ export default function LoginPage() {
         </div>
     );
 }
+
 
