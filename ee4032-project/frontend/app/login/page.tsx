@@ -76,7 +76,7 @@ export default function LoginPage() {
             await connectWalletAndEnsureSepolia();
             router.replace('/'); // 成功→主页
         } catch (err: any) {
-            const message = err?.code === 4001 ? '你取消了连接请求。' : err?.message || '连接失败，请重试。';
+            const message = err?.code === 4001 ? 'You canceled the connection request.' : err?.message || 'Connection failed, please try again.';
             setModalMsg(message);
             setModalOpen(true);
         } finally {
@@ -149,11 +149,11 @@ export default function LoginPage() {
                 <div className="w-full max-w-md rounded-2xl bg-white/70 backdrop-blur-xl shadow-2xl ring-1 ring-black/5 p-8">
                     <div className="flex items-center gap-3 mb-6">
                         <Image src="/images/logo.png" alt="logo" width={40} height={40} /> {/* 可选：public/images/logo.png */}
-                        <h1 className="text-2xl font-bold">登录 FoodTrace</h1>
+                        <h1 className="text-2xl font-bold">Log in to FoodTrace</h1>
                     </div>
 
                     <p className="text-gray-600 mb-6">
-                        请连接 MetaMask，并确保网络为 <b>Sepolia</b> 测试网。
+                        Please connect to MetaMask and ensure the network is the <b>Sepolia</b> test network.
                     </p>
 
                     <button
@@ -166,7 +166,7 @@ export default function LoginPage() {
 
                     {/* 音乐控制（自动播放，提供音量滑块） */}
                     <div className="mt-6 flex items-center justify-between gap-4">
-                        <span className="text-sm text-gray-600">背景音乐</span>
+                        <span className="text-sm text-gray-600">Background music</span>
                         <input
                             type="range"
                             min={0}
@@ -201,3 +201,4 @@ export default function LoginPage() {
         </div>
     );
 }
+
